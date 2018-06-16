@@ -1,0 +1,42 @@
+<main class="main">
+  <section class="main__list">
+    <ui-input-container>
+      <input id="search" #inputSearch="ngModel" type="text"
+             [(ngModel)]="info.search" uiInput name="search">
+      <label for="search">Search</label>
+      <div class="icon">
+        <button class="ui-button icon flat" type="button"
+                uiRipple>
+          <i class="material-icons">search</i>
+        </button>
+      </div>
+    </ui-input-container>
+  </section>
+  <section class="main__chat">
+    <header class="main__chat__header">
+
+    </header>
+    <section class="main__chat__content">
+      <div class="message" *ngFor="let message of messages">
+        <div class="message__icon">G</div>
+        <div class="message__text">{{ message.message }}</div>
+      </div>
+
+
+      <section class="send-message">
+        <ui-input-container class="send-message__input">
+          <input id="sendMessage" #inputSendMessage="ngModel" type="text"
+                 [(ngModel)]="info.sendMessage" uiInput name="sendMessage"
+          (keydown.enter)="sendMessage($event.target.value)"
+          >
+          <div class="icon" (click)="sendMessage(info.sendMessage)">
+            <button class="ui-button icon flat" type="button"
+                    uiRipple>
+              <i class="material-icons">send</i>
+            </button>
+          </div>
+        </ui-input-container>
+      </section>
+    </section>
+  </section>
+</main>
