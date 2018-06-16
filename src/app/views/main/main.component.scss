@@ -31,11 +31,10 @@ $colorB: #EEEEEE;
       width: 100%;
       height: 100%;
       background-color: $colorB;
-      padding: 16px;
+      padding: 16px 16px 0 16px;
+      margin-bottom: 72px;
       position: relative;
-      padding-bottom: 64px;
-      //display: flex;
-      //flex-wrap: wrap;
+      overflow-y: auto;
     }
   }
 }
@@ -65,14 +64,15 @@ $colorB: #EEEEEE;
 }
 
 .send-message {
-  position: absolute;
+  position: fixed;
+  background-color: $colorB;
   width: 100%;
   height: 64px;
   left: 0;
   bottom: 0;
   display: flex;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: 8px 16px 8px 340px;
   box-shadow: ui-shadow("1dp");
   &__input {
     width: 100%;

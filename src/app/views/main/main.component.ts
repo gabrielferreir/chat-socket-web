@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {SocketService} from '../../core/socket.service';
 
 @Component({
@@ -9,7 +9,9 @@ import {SocketService} from '../../core/socket.service';
 export class MainComponent implements OnInit {
   info: any;
   messages: any;
-  constructor(private socketService: SocketService) {
+
+  constructor(private socketService: SocketService,
+              private element: ElementRef) {
     this.info = {};
     this.messages = [];
   }
@@ -17,8 +19,13 @@ export class MainComponent implements OnInit {
   ngOnInit() {
 
     this.socketService.newMessage.subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.receiveMessage(res);
+      setTimeout(() => {
+        const el = this.element.nativeElement.querySelector('.main__chat__content');
+        const scroll = (el.scrollHeight - el.offsetHeight);
+        el.scrollTo(0, scroll);
+      });
     });
 
   }
@@ -28,10 +35,9 @@ export class MainComponent implements OnInit {
     this.info.sendMessage = '';
   }
 
-   receiveMessage(message) {
-    this.messages.push(message);
-   }
-
+  receiveMessage(message) {
+        this.messages.push(message);
+  }
 
 
 }
